@@ -55,7 +55,7 @@ class StoryList {
         "url": newStory.url
       }
     });
-    console.log(response.data.story);
+    
     return response.data.story;
   }
   

@@ -92,7 +92,7 @@ $(async function() {
     const username = currentUser.username;
 
     const newStory = await storyList.addStory(currentUser, {
-      author, title, url, username, hostName
+      author, title, url, username//, hostName
     })
 
     const storyObj = {
