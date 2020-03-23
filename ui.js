@@ -92,12 +92,33 @@ $(async function() {
     const username = currentUser.username;
 
     const newStory = await storyList.addStory(currentUser, {
-      author, title, url//, username
+      author, title, url, username, hostName
     })
+
+    const storyObj = {
+      storyId: newStory.storyId,
+      title: newStory.title,
+      author: newStory.author,
+      hostName: hostName,
+      username: newStory.username
+     }
+    const storyLi = $(`
+    <li id="${storyObj.storyId}">
+      <a class="article-link" href="${storyObj.url}" target="a_blank">
+        <strong>${storyObj.title}</strong>
+      </a>
+      <small class="article-author">by ${storyObj.author}</small>
+      <small class="article-hostname ${storyObj.hostName}">(${hostName})</small>
+      <small class="article-username">posted by ${storyObj.username}</small>
+    </li>
+  `);
+
+    $allStoriesList.prepend(storyLi);
 
     $submitForm.slideUp("slow");
     $submitForm.trigger("reset");
   })
+  
   
   /**
    * Event Handler for Clicking Login
