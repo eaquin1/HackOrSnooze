@@ -55,7 +55,7 @@ class StoryList {
         "url": newStory.url
       }
     });
-    console.log(response.data.story);
+    
     return response.data.story;
   }
   
@@ -161,6 +161,14 @@ class User {
     existingUser.favorites = response.data.user.favorites.map(s => new Story(s));
     existingUser.ownStories = response.data.user.stories.map(s => new Story(s));
     return existingUser;
+  }
+
+  async addFavorite (username, storyId) {
+    const response = await axios.post(`${BASE_URL}/users/${username}/favorites/${storyId}`, {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3NpY2EiLCJpYXQiOjE1ODQ5MDA3MzZ9.BQ7bsmhOf14RQ6kWT1-5pHvkUY0qS9rfgtk0i6xQ6l8"
+    })
+    console.log(response);
+    return response;
   }
 }
 

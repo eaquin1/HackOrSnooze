@@ -104,6 +104,9 @@ $(async function() {
      }
     const storyLi = $(`
     <li id="${storyObj.storyId}">
+      <span class="star">
+        <i class="far fa-star"></i>
+      </span>
       <a class="article-link" href="${storyObj.url}" target="a_blank">
         <strong>${storyObj.title}</strong>
       </a>
@@ -165,6 +168,20 @@ $(async function() {
     $allStoriesList.show();
   });
 
+  /**
+   * Event handler for Favoriting
+   */
+
+   $('.star').on("click", async function(evt){
+    evt.preventDefault();
+    
+    $(evt.target).html('<i class="fas fa-star"></i>')
+    let storyId = $(evt.target).parent().parent().attr('id');
+    
+    
+    const addedFave = await currentUser.addFavorite(currentUser.username, storyId);
+
+   })
   /**
    * On page load, checks local storage to see if the user is already logged in.
    * Renders page information accordingly.
@@ -254,6 +271,9 @@ $(async function() {
     // render story markup
     const storyMarkup = $(`
       <li id="${story.storyId}">
+        <span class="star">
+          <i class="far fa-star"></i>
+        </span>
         <a class="article-link" href="${story.url}" target="a_blank">
           <strong>${story.title}</strong>
         </a>
