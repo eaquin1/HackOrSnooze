@@ -59,11 +59,15 @@ $(async function() {
     let password = $("#create-account-password").val();
 
     // call the create method, which calls the API and then builds a new user instance
-    const newUser = await User.create(username, password, name);
-
-    currentUser = newUser;
-    syncCurrentUserToLocalStorage();
-    loginAndSubmitForm();
+    try {
+      const newUser = await User.create(username, password, name);
+      currentUser = newUser;
+      syncCurrentUserToLocalStorage();
+      loginAndSubmitForm();
+      } catch {
+        alert("User already exists, please log in or sign up a new user");
+      }
+    
   });
 
   /**

@@ -122,19 +122,13 @@ class User {
         name
       }
     });
+    // build a new User instance from the API response
+    const newUser = new User(response.data.user);
 
-     try {
-      // build a new User instance from the API response
-      const newUser = new User(response.data.user);
+    // attach the token to the newUser instance for convenience
+    newUser.loginToken = response.data.token;
 
-      // attach the token to the newUser instance for convenience
-      newUser.loginToken = response.data.token;
-
-      return newUser;
-    } catch(error) {
-      alert("User already exists, please enter a new username", error);
-    }
-
+    return newUser;  
   }
 
   /* Login in user and return user instance.
