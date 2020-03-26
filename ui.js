@@ -26,7 +26,7 @@ $(async function() {
 
   /**
    * Event listener for logging in.
-   *  If successfully we will setup the user instance
+   *  If successful we will setup the user instance
    */
 
   $loginForm.on("submit", async function(evt) {
@@ -64,7 +64,8 @@ $(async function() {
       currentUser = newUser;
       syncCurrentUserToLocalStorage();
       loginAndSubmitForm();
-      } catch {
+      } catch (error) {
+        console.log(error);
         alert("User already exists, please log in or sign up a new user");
       }
     
