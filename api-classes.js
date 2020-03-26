@@ -114,6 +114,7 @@ class User {
    */
 
   static async create(username, password, name) {
+    
     const response = await axios.post(`${BASE_URL}/signup`, {
       user: {
         username,
@@ -122,13 +123,18 @@ class User {
       }
     });
 
-    // build a new User instance from the API response
-    const newUser = new User(response.data.user);
+     try {
+      // build a new User instance from the API response
+      const newUser = new User(response.data.user);
 
-    // attach the token to the newUser instance for convenience
-    newUser.loginToken = response.data.token;
+      // attach the token to the newUser instance for convenience
+      newUser.loginToken = response.data.token;
 
-    return newUser;
+      return newUser;
+    } catch(error) {
+      alert("User already exists, please enter a new username", error);
+    }
+
   }
 
   /* Login in user and return user instance.
