@@ -253,10 +253,4 @@ class Story {
 
 
 
-    //   curl -i \
-    //  -H "Content-Type: application/json" \
-    //  -X POST \
-    //  -d '{"user":{"name":"Tessica","username":"tessica","password":"hello"}}' \
-    //   https://hack-or-snooze-v3.herokuapp.com/signup
-
-    //   {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3NpY2EiLCJpYXQiOjE1ODQ5MDA3MzZ9.BQ7bsmhOf14RQ6kWT1-5pHvkUY0qS9rfgtk0i6xQ6l8","user":{"createdAt":"2020-03-22T18:12:16.344Z","favorites":[],"name":"Tessica","stories":[],"updatedAt":"2020-03-22T18:12:16.344Z","username":"tessica"}}
+    
