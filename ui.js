@@ -109,7 +109,7 @@ $(async function() {
         <strong>${newStory.title}</strong>
       </a>
       <small class="article-author">by ${newStory.author}</small>
-      <small class="article-hostname ${newStory.hostName}">(${hostName})</small>
+      <small class="article-hostname ${hostName}">(${hostName})</small>
       <small class="article-username">posted by ${newStory.username}</small>
     </li>
   `);
