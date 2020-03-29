@@ -37,12 +37,17 @@ $(async function() {
     const password = $("#login-password").val();
 
     // call the login static method to build a user instance
-    const userInstance = await User.login(username, password);
+    try {
+      const userInstance = await User.login(username, password);
 
-    // set the global user to the user instance
-    currentUser = userInstance;
-    syncCurrentUserToLocalStorage();
-    loginAndSubmitForm();
+      // set the global user to the user instance
+      currentUser = userInstance;
+      syncCurrentUserToLocalStorage();
+      loginAndSubmitForm();
+    } catch(e) {
+      alert("Please enter proper user credentials");
+      console.log(e)
+    }
   });
 
   /**
@@ -212,7 +217,9 @@ $(async function() {
    $ownStories.on("click", ".trash-can", async function (evt) {
    
       let storyId = $(evt.target).closest("li").attr('id');
-      
+      if(isFavorite) {
+        await currentUser.removeFavorite(storyId);
+      }
       await storyList.removeStory(currentUser, storyId);
       await generateStories();
       hideElements();

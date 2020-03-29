@@ -26,13 +26,16 @@ class StoryList {
   static async getStories() {
     // query the /stories endpoint (no auth required)
     const response = await axios.get(`${BASE_URL}/stories`);
+    if (response.status == 200) {
+      // turn the plain old story objects from the API into instances of the Story class
+      const stories = response.data.stories.map(story => new Story(story));
 
-    // turn the plain old story objects from the API into instances of the Story class
-    const stories = response.data.stories.map(story => new Story(story));
-
-    // build an instance of our own class using the new array of stories
-    const storyList = new StoryList(stories);
-    return storyList;
+      // build an instance of our own class using the new array of stories
+      const storyList = new StoryList(stories);
+      return storyList;
+    } else {
+      alert("Server is down, please try again later")
+    }
   }
 
   /**
@@ -138,6 +141,7 @@ class User {
    */
 
   static async login(username, password) {
+   
     const response = await axios.post(`${BASE_URL}/login`, {
       user: {
         username,
@@ -145,6 +149,9 @@ class User {
       }
     });
 
+    if(response.status != 200) {
+      alert("Server is down, please try again later")
+    }
     // build a new User instance from the API response
     const existingUser = new User(response.data.user);
 
