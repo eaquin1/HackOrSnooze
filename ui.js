@@ -300,10 +300,7 @@ $(async function() {
 
     // loop through all of our stories and generate HTML for them
     for (let story of storyList.stories) {
-      const storyLi = generateStoryHTML(story);
-      if (currentUser) {
-        updateStars(storyLi)
-      }
+      const storyLi = generateStoryHTML(story, false, true);
       $allStoriesList.append(storyLi);
     }
   }
@@ -372,20 +369,6 @@ $(async function() {
 
     $ownStories.show();
   }
-
-  //show favorite stories as a filled in star
-  function updateStars(storyLi) {
-    if (checkUserId(storyLi)) {
-        storyLi.children(":first").addClass('fas').removeClass('far')
-      }
-  }
-
-// check if story ID matches user ID
-  function checkUserId(storyLi) {
-    return currentUser.favorites.some(userStory =>
-        storyLi.attr('id') === userStory.storyId)
-  }
-
 
   /* hide all elements in elementsArr */
 
